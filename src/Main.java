@@ -5,9 +5,11 @@ public class Main {
         String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
         String[] wing = {"N", "S", "E", "W"};
 
-        for (int k = 0; k < 4; k ++) {
-            for (int i = 1; i <= 20; i++) {
-                System.out.println(i);
+        for (int k = 0; k < 9; k ++) {
+            for (int w = 0; w < 4; w ++) {
+                for (int i = 1; i <= 20; i++) {
+                    System.out.println(floors[k] + wing[w] + i);
+                }
             }
         }
     }
