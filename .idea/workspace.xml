@@ -32,7 +32,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/MuyunZhang/Database-Design-Project",
-    "accountId": "f2f75911-5a70-43a5-98e3-68fff26eda3b"
+    "accountId": "54543d57-126d-44ab-a09f-27173050046b"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -46,7 +46,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Departments.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Students.executor": "Run",
     "Application.Teachers.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
