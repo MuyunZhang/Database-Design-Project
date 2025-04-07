@@ -9,8 +9,8 @@ public class Departments {
 
     public static void main(String[] args){
         System.out.println(departments.length);
-        for (int i = 0; i < departments.length; i++) {
-            String department = "'" + departments[i] + "'";
+        for (int i = 1; i <= departments.length; i++) {
+            String department = "'" + departments[i-1] + "'";
             System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + i + ", " + department + " );");
         }
     }
