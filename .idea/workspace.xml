@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="teacher">
+      <change afterPath="$PROJECT_DIR$/src/Assignments.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CourseType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Courses.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/courses" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Departments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Departments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Teachers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teachers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teachers" beforeDir="false" afterPath="$PROJECT_DIR$/src/teachers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +33,12 @@
     &quot;assignee&quot;: &quot;MuyunZhang&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MuyunZhang/Database-Design-Project",
-    "accountId": "54543d57-126d-44ab-a09f-27173050046b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MuyunZhang/Database-Design-Project&quot;,
+    &quot;accountId&quot;: &quot;54543d57-126d-44ab-a09f-27173050046b&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -48,6 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Courses.executor": "Run",
     "Application.Departments.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.Students.executor": "Run",
