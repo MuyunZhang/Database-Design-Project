@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="course type">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Courses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Courses.java" afterDir="false" />
+    <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="courses">
+      <change afterPath="$PROJECT_DIR$/src/AssignmentType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +45,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AssignmentType.executor": "Run",
     "Application.CourseType.executor": "Run",
     "Application.Courses.executor": "Run",
     "Application.Departments.executor": "Run",
@@ -108,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744137004034</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="courses">
+      <option name="closed" value="true" />
+      <created>1744137755956</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744137755956</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -116,7 +124,8 @@
     <MESSAGE value="rooms done, Basement to 8th floor, north south west east, 20 rooms on each side" />
     <MESSAGE value="teacher" />
     <MESSAGE value="course type" />
-    <option name="LAST_COMMIT_MESSAGE" value="course type" />
+    <MESSAGE value="courses" />
+    <option name="LAST_COMMIT_MESSAGE" value="courses" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
