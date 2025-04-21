@@ -1,37 +1,110 @@
 import java.io.*;
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class testing {
     static Random rand = new Random();
     static String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
     static String[] wings = {"N", "S", "E", "W"};
-    static int ROOM_MAX = 20;
 
     public static void main(String[] args) throws IOException {
-        generateRooms();
-        generateDepartments("teachers.txt");
-        generateTeachers("teachers.txt");
-        generateCourses("courses.txt");
-        generateCourseTypes();
-        generateAssignmentTypes();
-        generateStudents(5000);
-        generateClasses();
-        generateAssignments();
-        generateGrades();
-        generateSchedules();
+
+        int total = 0;
+        int score = 0;
+        ArrayList<String> fileData = getFileData("src/teachers");
+        ArrayList<String> teacher = new ArrayList<>();
+        ArrayList<String> department = new ArrayList<>();
+        for (int i = 0; i < fileData.size(); i++) {
+            int len = fileData.size();
+            String[] list = fileData.get(i).split("\\|");
+            String teacher_name = list[0];
+            teacher.add(teacher_name);
+        }
+        for (int i = 0; i < fileData.size(); i++) {
+            int len = fileData.size();
+            String[] list = fileData.get(i).split("\\|");
+            String Department = list[1];
+            department.add(Department);
+        }
+        for (int i = 1; i <= fileData.size(); i++) {
+            if (department.get(i - 1).contains("Biology")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
+            }
+            if (department.get(i - 1).contains("Chemistry")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 2 + " );");
+            }
+            if (department.get(i - 1).contains("CTE, Computer Science & Engineering")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 3 + " );");
+            }
+            if (department.get(i - 1).contains("English")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 4 + " );");
+            }
+            if (department.get(i - 1).contains("Mathematics")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 5 + " );");
+            }
+            if (department.get(i - 1).contains("Physics")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 6 + " );");
+            }
+            if (department.get(i - 1).contains("Social Studies")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 7 + " );");
+            }
+            if (department.get(i - 1).contains("Visual & Performing Arts")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 8 + " );");
+            }
+            if (department.get(i - 1).contains("World Languages & ENL")) {
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 9 + " );");
+            }
+
+        }
     }
 
-    static void generateRooms() {
-        int id = 1;
-        for (String floor : floors) {
-            for (String wing : wings) {
-                for (int i = 1; i <= ROOM_MAX; i++) {
-                    String room = floor + wing + i;
-                    System.out.println("INSERT INTO Rooms VALUES (" + id++ + ", '" + room + "');");
+
+    public static ArrayList<String> getFileData(String fileName) {
+        ArrayList<String> fileData = new ArrayList<String>();
+        try {
+            File f = new File(fileName);
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                if (!line.equals(""))
+                    fileData.add(line);
+            }
+            return fileData;
+        } catch (FileNotFoundException e) {
+            return fileData;
+        }
+    }
+
+    public ArrayList<Students> GenerateStudents(){
+        ArrayList<Students> studentArrayList = new ArrayList<>();
+        for (int i = 1; i <= 5000; i++) {
+            String newName = "Student" + i;
+            Students student = new Students(i, newName);
+            studentArrayList.add(student);
+            System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
+        }
+        return studentArrayList;
+    }
+}
+
+
+    /*static void generateRooms() {
+        //rooms
+        ArrayList<Integer> rooms = new ArrayList<>();
+        for (int k = 0; k < 9; k ++) {
+            for (int w = 0; w < 4; w ++) {
+                for (int i = 1; i <= 20; i++) {
+                    rooms.add(i);
+                    System.out.println(floors[k] + wings[w] + i);
                 }
             }
         }
     }
+
 
     static void generateDepartments(String teacherFile) throws IOException {
         Set<String> departments = new HashSet<>();
@@ -134,4 +207,4 @@ public class testing {
             }
         }
     }
-}
+} */

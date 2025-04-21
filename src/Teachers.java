@@ -10,7 +10,6 @@ public class Teachers {
         int total = 0;
         int score = 0;
         ArrayList<String> fileData = getFileData("src/teachers");
-        //String[] splitSample = sample.split(" ");
         ArrayList<String> teacher = new ArrayList<>();
         ArrayList<String> department = new ArrayList<>();
         for(int i = 0; i < fileData.size(); i ++){
@@ -55,6 +54,53 @@ public class Teachers {
             }
 
         }
+    }
+
+    int teacherid;
+
+    int departmentid;
+
+    int assignmentid;
+
+    String name;
+
+    public Teachers(int teacherid, String name, int departmentid, int assignmentid){
+        this.assignmentid = assignmentid;
+        this.name = name;
+        this.teacherid = teacherid;
+        this.departmentid = departmentid;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setTeacherid(int id){
+        teacherid = id;
+    }
+
+    public int getTeacherid(){
+        return teacherid;
+    }
+
+    public void setDepartmentid(int id){
+        departmentid = id;
+    }
+
+    public int getDepartmentid(){
+        return departmentid;
+    }
+
+    public void setAssignmentid(int id){
+        assignmentid = id;
+    }
+
+    public int getAssignmentid(){
+        return assignmentid;
     }
 
 

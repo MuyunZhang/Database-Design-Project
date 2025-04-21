@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="courses">
-      <change afterPath="$PROJECT_DIR$/src/testing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/testing2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Students.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Students.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Teachers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teachers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +55,7 @@
     "Application.Main.executor": "Run",
     "Application.Students.executor": "Run",
     "Application.Teachers.executor": "Run",
+    "Application.testing.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
