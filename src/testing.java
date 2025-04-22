@@ -90,6 +90,11 @@ public class testing {
         }
         return studentArrayList;
     }
+
+    public ArrayList<Teachers> GenerateTeachers(){
+        ArrayList<Teachers> teachersArrayList = new ArrayList<>();
+        for ()
+    }
 }
 
 
