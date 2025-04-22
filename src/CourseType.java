@@ -5,4 +5,5 @@ public class CourseType {
             System.out.println("INSERT INTO Course_Type ( Course_TypeID, Course_Type ) VALUES ( " + i + ", ' " + types[i-1] + "' );");
         }
     }
+
 }

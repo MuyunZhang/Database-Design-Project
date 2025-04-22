@@ -1,13 +1,51 @@
 import java.util.ArrayList;
 
 public class Assignments {
-        public static void main(String[] args) {
-            String [] types = {"Minor Assessment", "Major Assessment"};
-            for (int i = 1; i <= types.length; i++) {
-                System.out.println("INSERT INTO Assignment_Type ( Assignment_TypeID, Assignment_Type ) VALUES ( " + i + ", ' " + types[i-1] + "' );");
-            }
-            for (int i = 1; i <= types.length; i++) {
-                System.out.println("INSERT INTO Assignments ( Assignment_ID, Assignment_Name, Class_ID, Assignment_TypeID) VALUES ( " + i + ", ' " + types[i-1] + "' );");
-            }
+
+    private String name;
+
+    private int id;
+
+    private int typeid;
+
+    private int classid;
+
+    public Assignments(String name, int id, int typeid, int classid){
+        this.id = id;
+        this.name = name;
+        this.typeid = typeid;
+        this.classid = classid;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setTypeid(int id){
+        typeid = id;
+    }
+
+    public void setClassid(int id){
+        classid = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getTypeid(){
+        return typeid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getClassid() {
+        return classid;
     }
 }

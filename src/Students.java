@@ -5,7 +5,6 @@ public class Students {
             System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
     }
-
     int id = 0;
     String name;
     public Students(int id, String name){

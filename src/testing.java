@@ -11,6 +11,7 @@ public class testing {
     static String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
     static String[] wings = {"N", "S", "E", "W"};
 
+
     public static void main(String[] args) throws IOException {
 
         int total = 0;

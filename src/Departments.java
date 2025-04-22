@@ -14,5 +14,28 @@ public class Departments {
             System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + i + ", " + department + " );");
         }
     }
+    private String departmentName;
+    private int departmentID;
+
+    public Departments(String name, int id){
+        departmentName = name;
+        departmentID = id;
+    }
+
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
+    }
+
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
 }
 
