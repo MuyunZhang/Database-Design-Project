@@ -131,7 +131,11 @@ public class testing {
         return departmentsArrayList;
     }
 
+    public static ArrayList<CourseType> generateCourses() {
+        ArrayList<CourseType> courseArrayList = new ArrayList<>();
 
+        return courseArrayList;
+    }
 }
 
 
