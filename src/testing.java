@@ -31,7 +31,8 @@ public class testing {
             String Department = list[1];
             department.add(Department);
         }
-        for (int i = 1; i <= fileData.size(); i++) {
+        generateDepartments();
+        /*for (int i = 1; i <= fileData.size(); i++) {
             if (department.get(i - 1).contains("Biology")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
             }
@@ -59,8 +60,7 @@ public class testing {
             if (department.get(i - 1).contains("World Languages & ENL")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 9 + " );");
             }
-
-        }
+        } */
     }
 
 
@@ -80,21 +80,58 @@ public class testing {
         }
     }
 
-    public ArrayList<Students> GenerateStudents(){
+    public static ArrayList<Students> generateStudents(){
         ArrayList<Students> studentArrayList = new ArrayList<>();
         for (int i = 1; i <= 5000; i++) {
             String newName = "Student" + i;
             Students student = new Students(i, newName);
             studentArrayList.add(student);
-            System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
+            //System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
         return studentArrayList;
     }
 
-    public ArrayList<Teachers> GenerateTeachers(){
+    public static ArrayList<Teachers> generateTeachers(){
         ArrayList<Teachers> teachersArrayList = new ArrayList<>();
+        ArrayList<String> fileData = getFileData("src/teachers");
+        ArrayList<String> teacher = new ArrayList<>();
+        ArrayList<String> department = new ArrayList<>();
+        for (int i = 0; i < fileData.size(); i++) {
+            int len = fileData.size();
+            String[] list = fileData.get(i).split("\\|");
+            String teacher_name = list[0];
+            teacher.add(teacher_name);
+        }
+        for (int i = 0; i < fileData.size(); i++) {
+            int len = fileData.size();
+            String[] list = fileData.get(i).split("\\|");
+            String Department = list[1];
+            department.add(Department);
+        }
+        for (int i = 1; i <= teacher.size(); i ++){
+            String name = teacher.get(i);
+            Teachers teachers = new Teachers(i, name, i, i); //incomplete
+            teachersArrayList.add(teachers);
+        }
         return teachersArrayList;
     }
+
+    public static ArrayList<Departments> generateDepartments() throws IOException {
+        ArrayList<Departments> departmentsArrayList = new ArrayList<>();
+        String [] departments = {"Biology", "Chemistry", "CTE, Computer Science & Engineering", "English",
+                "Mathematics", "Physics", "Social Studies", "Visual & Performing Arts", "World Languages & ENL"};
+        System.out.println(departments.length);
+        for (int i = 1; i <= departments.length; i++) {
+            String name = departments[i-1];
+            Departments department = new Departments(name,i);
+            departmentsArrayList.add(department);
+            String depart = "'" + departments[i-1] + "'";
+            System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + departmentsArrayList.get(i-1).getDepartmentID() + ", " + departmentsArrayList.get(i-1).getDepartmentName() + " );");
+        }
+        return departmentsArrayList;
+    }
+
+
 }
 
 
@@ -109,24 +146,9 @@ public class testing {
                 }
             }
         }
-    }
+    } */
 
-
-    static void generateDepartments(String teacherFile) throws IOException {
-        Set<String> departments = new HashSet<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(teacherFile))) {
-            String line;
-            int id = 1;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                if (departments.add(parts[1])) {
-                    System.out.println("INSERT INTO Departments VALUES (" + id++ + ", '" + parts[1].trim() + "');");
-                }
-            }
-        }
-    }
-
-    static void generateTeachers(String teacherFile) throws IOException {
+    /*static void generateTeachers(String teacherFile) throws IOException {
         Map<String, Integer> departmentMap = new HashMap<>();
         int deptId = 1;
         int id = 1;
