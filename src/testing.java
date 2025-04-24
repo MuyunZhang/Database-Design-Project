@@ -122,7 +122,7 @@ public class testing {
             teachersArrayList.add(teachers);
         }
         for (int i = 0; i < teachersArrayList.size(); i ++){
-            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 9 + " );");
+            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9 + ", " + 9 + " );");
         }
         return teachersArrayList;
     }

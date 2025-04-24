@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="courses">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="testing">
       <change beforePath="$PROJECT_DIR$/src/testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,12 +28,12 @@
     &quot;assignee&quot;: &quot;MuyunZhang&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MuyunZhang/Database-Design-Project&quot;,
-    &quot;accountId&quot;: &quot;22883907-7644-4b45-ab2b-3a5d555986ee&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MuyunZhang/Database-Design-Project",
+    "accountId": "0b6c3c55-dd6c-448a-9488-79f7c09362bf"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -135,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745346993056</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="testing">
+      <option name="closed" value="true" />
+      <created>1745520364010</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745520364010</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -144,7 +151,8 @@
     <MESSAGE value="teacher" />
     <MESSAGE value="course type" />
     <MESSAGE value="courses" />
-    <option name="LAST_COMMIT_MESSAGE" value="courses" />
+    <MESSAGE value="testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
