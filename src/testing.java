@@ -32,6 +32,8 @@ public class testing {
             department.add(Department);
         }
         generateDepartments();
+        generateRooms();
+        generateCourseTypes();
         /*for (int i = 1; i <= fileData.size(); i++) {
             if (department.get(i - 1).contains("Biology")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
@@ -91,7 +93,7 @@ public class testing {
         return studentArrayList;
     }
 
-    public static ArrayList<Teachers> generateTeachers(){
+    public static ArrayList<Teachers> generateTeachers() throws IOException {
         ArrayList<Teachers> teachersArrayList = new ArrayList<>();
         ArrayList<String> fileData = getFileData("src/teachers");
         ArrayList<String> teacher = new ArrayList<>();
@@ -109,9 +111,18 @@ public class testing {
             department.add(Department);
         }
         for (int i = 1; i <= teacher.size(); i ++){
-            String name = teacher.get(i);
-            Teachers teachers = new Teachers(i, name, i, i); //incomplete
+            String name = teacher.get(i - 1);
+            int de = 0;
+            for(int k = 0; k < generateDepartments().size(); k++){
+                if(generateDepartments().get(k).getDepartmentName().contains(department.get(k))) {
+                    de = generateDepartments().get(k).getDepartmentID();
+                }
+            }
+            Teachers teachers = new Teachers(i, name, de, i); //incomplete
             teachersArrayList.add(teachers);
+        }
+        for (int i = 0; i < teachersArrayList.size(); i ++){
+            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 9 + " );");
         }
         return teachersArrayList;
     }
@@ -131,10 +142,36 @@ public class testing {
         return departmentsArrayList;
     }
 
-    public static ArrayList<CourseType> generateCourses() {
+    public static ArrayList<CourseType> generateCourseTypes() throws IOException{
         ArrayList<CourseType> courseArrayList = new ArrayList<>();
-
+        String [] types = {"AP", "Regents", "Elective"};
+        for (int i = 1; i <= types.length; i++) {
+            String name = types[i-1];
+            CourseType courseType = new CourseType(i,name);
+            courseArrayList.add(courseType);
+            System.out.println("INSERT INTO Course_Type ( Course_TypeID, Course_Type ) VALUES ( " + i + ", ' " + types[i-1] + "' );");
+        }
         return courseArrayList;
+    }
+
+    public static ArrayList<Rooms> generateRooms() throws IOException{
+        ArrayList<Rooms> roomsArrayList = new ArrayList<>();
+        String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
+        String[] wing = {"N", "S", "E", "W"};
+        int count = 1;
+        //rooms
+        for (int k = 0; k < 9; k ++) {
+            for (int w = 0; w < 4; w ++) {
+                for (int i = 1; i <= 20; i++) {
+                    String name = floors[k] + wing[w] + i;
+                    Rooms room = new Rooms(name, count);
+                    roomsArrayList.add(room);
+                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count-1).getRoomID() + ", ' " + roomsArrayList.get(count-1).getRoom() + "' );");
+                    count ++;
+                }
+            }
+        }
+        return roomsArrayList;
     }
 }
 
