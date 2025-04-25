@@ -34,6 +34,7 @@ public class testing {
         generateDepartments();
         generateRooms();
         generateCourseTypes();
+        generateCourses();
         /*for (int i = 1; i <= fileData.size(); i++) {
             if (department.get(i - 1).contains("Biology")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
@@ -173,107 +174,45 @@ public class testing {
         }
         return roomsArrayList;
     }
+
+    public static ArrayList<AssignmentType> generateAssignmentType() throws IOException{
+        ArrayList<AssignmentType> assignmentTypeArrayList = new ArrayList<>();
+        String [] types = {"Minor Assessment", "Major Assessment"};
+        for (int i = 1; i <= types.length; i++) {
+            String name = types[i-1];
+            AssignmentType assignmentType = new AssignmentType(i - 1, name);
+            assignmentTypeArrayList.add(assignmentType);
+            System.out.println("INSERT INTO Assignment_Type ( Assignment_TypeID, Assignment_Type ) VALUES ( " + i + ", ' " + types[i-1] + "' );");
+        }
+        return assignmentTypeArrayList;
+    }
+
+    public static ArrayList<Courses> generateCourses() throws IOException{
+        ArrayList<Courses> coursesArrayList = new ArrayList<>();
+        ArrayList<String> all_courses = new ArrayList<>();
+        ArrayList<String> data = getFileData("src/courses");
+
+        ArrayList<String> fileData = getFileData("src/courses");
+        ArrayList<String> course = new ArrayList<>();
+        for(int i = 1; i <= fileData.size(); i ++){
+            String name = fileData.get(i-1);
+            int typeid = 0;
+            if(name.contains("AP") && !name.contains("Pre-AP")){
+                typeid = 1;
+                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 1 + ");");
+            }
+            else if(name.contains("Regents")){
+                typeid = 2;
+                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 2 + ");");
+            }
+            else {
+                typeid = 3;
+                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 3 + ");");
+            }
+            Courses courses = new Courses(i, name, typeid);
+            coursesArrayList.add(courses);
+        }
+        return coursesArrayList;
+    }
 }
 
-
-    /*static void generateRooms() {
-        //rooms
-        ArrayList<Integer> rooms = new ArrayList<>();
-        for (int k = 0; k < 9; k ++) {
-            for (int w = 0; w < 4; w ++) {
-                for (int i = 1; i <= 20; i++) {
-                    rooms.add(i);
-                    System.out.println(floors[k] + wings[w] + i);
-                }
-            }
-        }
-    } */
-
-    /*static void generateTeachers(String teacherFile) throws IOException {
-        Map<String, Integer> departmentMap = new HashMap<>();
-        int deptId = 1;
-        int id = 1;
-        try (BufferedReader br = new BufferedReader(new FileReader(teacherFile))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                String name = parts[0].trim();
-                String dept = parts[1].trim();
-                if (!departmentMap.containsKey(dept)) {
-                    departmentMap.put(dept, deptId++);
-                }
-                System.out.println("INSERT INTO Teachers VALUES (" + id++ + ", '" + name + "', " + departmentMap.get(dept) + ");");
-            }
-        }
-    }
-
-    static void generateCourses(String courseFile) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(courseFile))) {
-            String line;
-            int id = 1;
-            while ((line = br.readLine()) != null) {
-                String name = line.trim();
-                int typeId = rand.nextInt(3) + 1; // 1-3 for Elective, Regents, AP
-                System.out.println("INSERT INTO Courses VALUES (" + id++ + ", '" + name + "', " + typeId + ");");
-            }
-        }
-    }
-
-    static void generateCourseTypes() {
-        System.out.println("INSERT INTO Course_Type VALUES (1, 'Elective');");
-        System.out.println("INSERT INTO Course_Type VALUES (2, 'Regents');");
-        System.out.println("INSERT INTO Course_Type VALUES (3, 'AP');");
-    }
-
-    static void generateAssignmentTypes() {
-        System.out.println("INSERT INTO Assignment_Type VALUES (1, 'Minor Assessment');");
-        System.out.println("INSERT INTO Assignment_Type VALUES (2, 'Major Assessment');");
-    }
-
-    static void generateStudents(int count) {
-        for (int i = 1; i <= count; i++) {
-            System.out.println("INSERT INTO Students VALUES (" + i + ", 'Student" + i + "');");
-        }
-    }
-
-    static void generateClasses() {
-        int id = 1;
-        for (int period = 1; period <= 10; period++) {
-            for (int i = 1; i <= 5; i++) {
-                int courseId = rand.nextInt(100) + 1; // Random course
-                int teacherId = rand.nextInt(50) + 1; // Random teacher
-                int roomId = rand.nextInt(160) + 1; // Random room
-                System.out.println("INSERT INTO Classes VALUES (" + id++ + ", " + period + ", " + courseId + ", " + teacherId + ", " + roomId + ");");
-            }
-        }
-    }
-
-    static void generateAssignments() {
-        int id = 1;
-        for (int classId = 1; classId <= 50; classId++) {
-            for (int i = 0; i < 15; i++) {
-                String name = "Assignment " + (i + 1);
-                int typeId = (i < 12) ? 1 : 2; // 12 Minor, 3 Major
-                System.out.println("INSERT INTO Assignments VALUES ('" + name + "', " + id++ + ", " + classId + ", " + typeId + ");");
-            }
-        }
-    }
-
-    static void generateGrades() {
-        for (int studentId = 1; studentId <= 5000; studentId++) {
-            for (int assignmentId = 1; assignmentId <= 15; assignmentId++) {
-                int grade = rand.nextInt(26) + 75; // Grades between 75 and 100
-                System.out.println("INSERT INTO Grades VALUES (" + assignmentId + ", " + grade + ", " + studentId + ");");
-            }
-        }
-    }
-
-    static void generateSchedules() {
-        for (int studentId = 1; studentId <= 5000; studentId++) {
-            for (int period = 1; period <= 10; period++) {
-                int classId = rand.nextInt(50) + 1; // Random class
-                System.out.println("INSERT INTO Schedule VALUES (" + studentId + ", " + classId + ");");
-            }
-        }
-    }
-} */

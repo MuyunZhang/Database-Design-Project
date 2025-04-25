@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="testing">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AssignmentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AssignmentType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Courses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Courses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/s" beforeDir="false" afterPath="$PROJECT_DIR$/src/s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../Database-Design-Project\exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,12 +36,12 @@
     &quot;assignee&quot;: &quot;MuyunZhang&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MuyunZhang/Database-Design-Project",
-    "accountId": "0b6c3c55-dd6c-448a-9488-79f7c09362bf"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MuyunZhang/Database-Design-Project&quot;,
+    &quot;accountId&quot;: &quot;0b6c3c55-dd6c-448a-9488-79f7c09362bf&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -43,24 +51,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AssignmentType.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CourseType.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Courses.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Departments.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Students.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Teachers.executor&quot;: &quot;Run&quot;,
-    &quot;Application.testing.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/BT_4N2_16/IdeaProjects/untitled/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AssignmentType.executor": "Run",
+    "Application.CourseType.executor": "Run",
+    "Application.Courses.executor": "Run",
+    "Application.Departments.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Students.executor": "Run",
+    "Application.Teachers.executor": "Run",
+    "Application.testing.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/muyun/IdeaProjects/Database-Design-Project",
+    "onboarding.tips.debug.path": "C:/Users/BT_4N2_16/IdeaProjects/untitled/src/Main.java",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
