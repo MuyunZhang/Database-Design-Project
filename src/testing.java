@@ -214,5 +214,16 @@ public class testing {
         }
         return coursesArrayList;
     }
-}
+    //classes is basically course offerings
+    public static ArrayList<Classes> generateClasses() throws IOException{
+        ArrayList<Classes> classesArrayList = new ArrayList<>();
+        for(int i = 0; i < generateCourses().size(); i ++){
+            int offerings = (int) (Math.random() * (5-1+1)) + 1;
+            String
+            for(int k = 0; k < offerings; k ++){
 
+            }
+        }
+        return classesArrayList;
+    }
+}

@@ -16,5 +16,10 @@ public class Main {
                 }
             }
         }
+        for(int i = 0; i < 10000; i ++){
+            int offerings = (int) (Math.random() * (5-1+1)) + 1;
+            System.out.println(offerings);
+        }
+        System.out.println();
     }
 }
