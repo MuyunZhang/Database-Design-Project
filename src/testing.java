@@ -87,7 +87,7 @@ public class testing {
         ArrayList<Students> studentArrayList = new ArrayList<>();
         for (int i = 1; i <= 5000; i++) {
             String newName = "Student" + i;
-            Students student = new Students(i, newName);
+            Students student = new Students(newName, i, i);
             studentArrayList.add(student);
             //System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
@@ -216,10 +216,15 @@ public class testing {
     }
     //classes is basically course offerings
     public static ArrayList<Classes> generateClasses() throws IOException{
+        /*private int classID;
+        private int period;
+        private int teacherID;
+        private int courseID;
+        private int roomID;*/
         ArrayList<Classes> classesArrayList = new ArrayList<>();
         for(int i = 0; i < generateCourses().size(); i ++){
             int offerings = (int) (Math.random() * (5-1+1)) + 1;
-            String
+            int courseID = generateCourses().get(i).getCourseid();
             for(int k = 0; k < offerings; k ++){
 
             }

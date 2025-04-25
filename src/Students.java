@@ -7,7 +7,8 @@ public class Students {
     }
     int id = 0;
     String name;
-    public Students(int id, String name){
+    int assignmentid;
+    public Students(String name, int id, int assignmentid){
         this.id = id;
         this.name = name;
     }
