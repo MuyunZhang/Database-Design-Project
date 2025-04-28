@@ -224,13 +224,17 @@ public class testing {
         for (int i = 0; i < generateCourses().size(); i++) {
             int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1;
             int courseID = generateCourses().get(i).getCourseid();
+            int current = 7;
+            if(classesArrayList.get(i).getRoomID() == current && classesArrayList.get(i).getPeriod() == 4)
             for (int k = 0; k < offerings; k++) {
+                for(int g = 0; g < classesArrayList.size(); g ++){
 
+                }
             }
             //list of classes, adding as we go on instead of adding to list being the final action.
             // Add one class to list, with random room chosen and random period chosen, and add that class to the list.
             // while loop will have something like if the arraylist.get(i).period and . name is equal to the random values currently,
-            // then loop again until the random values dont match any values in the table. this will make sure no classes will share same period AND room at the same time
+            // then loop again until the random values don't match any values in the table. this will make sure no classes will share same period AND room at the same time
         }
         return classesArrayList;
     }
