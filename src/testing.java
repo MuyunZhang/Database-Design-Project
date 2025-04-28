@@ -83,7 +83,7 @@ public class testing {
         }
     }
 
-    public static ArrayList<Students> generateStudents(){
+    public static ArrayList<Students> generateStudents() {
         ArrayList<Students> studentArrayList = new ArrayList<>();
         for (int i = 1; i <= 5000; i++) {
             String newName = "Student" + i;
@@ -111,18 +111,18 @@ public class testing {
             String Department = list[1];
             department.add(Department);
         }
-        for (int i = 1; i <= teacher.size(); i ++){
+        for (int i = 1; i <= teacher.size(); i++) {
             String name = teacher.get(i - 1);
             int de = 0;
-            for(int k = 0; k < generateDepartments().size(); k++){
-                if(generateDepartments().get(k).getDepartmentName().contains(department.get(k))) {
+            for (int k = 0; k < generateDepartments().size(); k++) {
+                if (generateDepartments().get(k).getDepartmentName().contains(department.get(k))) {
                     de = generateDepartments().get(k).getDepartmentID();
                 }
             }
             Teachers teachers = new Teachers(i, name, de, i); //incomplete
             teachersArrayList.add(teachers);
         }
-        for (int i = 0; i < teachersArrayList.size(); i ++){
+        for (int i = 0; i < teachersArrayList.size(); i++) {
             System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9 + ", " + 9 + " );");
         }
         return teachersArrayList;
@@ -130,82 +130,80 @@ public class testing {
 
     public static ArrayList<Departments> generateDepartments() throws IOException {
         ArrayList<Departments> departmentsArrayList = new ArrayList<>();
-        String [] departments = {"Biology", "Chemistry", "CTE, Computer Science & Engineering", "English",
+        String[] departments = {"Biology", "Chemistry", "CTE, Computer Science & Engineering", "English",
                 "Mathematics", "Physics", "Social Studies", "Visual & Performing Arts", "World Languages & ENL"};
         System.out.println(departments.length);
         for (int i = 1; i <= departments.length; i++) {
-            String name = departments[i-1];
-            Departments department = new Departments(name,i);
+            String name = departments[i - 1];
+            Departments department = new Departments(name, i);
             departmentsArrayList.add(department);
-            String depart = "'" + departments[i-1] + "'";
-            System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + departmentsArrayList.get(i-1).getDepartmentID() + ", " + departmentsArrayList.get(i-1).getDepartmentName() + " );");
+            String depart = "'" + departments[i - 1] + "'";
+            System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + departmentsArrayList.get(i - 1).getDepartmentID() + ", " + departmentsArrayList.get(i - 1).getDepartmentName() + " );");
         }
         return departmentsArrayList;
     }
 
-    public static ArrayList<CourseType> generateCourseTypes() throws IOException{
+    public static ArrayList<CourseType> generateCourseTypes() throws IOException {
         ArrayList<CourseType> courseArrayList = new ArrayList<>();
-        String [] types = {"AP", "Regents", "Elective"};
+        String[] types = {"AP", "Regents", "Elective"};
         for (int i = 1; i <= types.length; i++) {
-            String name = types[i-1];
-            CourseType courseType = new CourseType(i,name);
+            String name = types[i - 1];
+            CourseType courseType = new CourseType(i, name);
             courseArrayList.add(courseType);
-            System.out.println("INSERT INTO Course_Type ( Course_TypeID, Course_Type ) VALUES ( " + i + ", ' " + types[i-1] + "' );");
+            System.out.println("INSERT INTO Course_Type ( Course_TypeID, Course_Type ) VALUES ( " + i + ", ' " + types[i - 1] + "' );");
         }
         return courseArrayList;
     }
 
-    public static ArrayList<Rooms> generateRooms() throws IOException{
+    public static ArrayList<Rooms> generateRooms() throws IOException {
         ArrayList<Rooms> roomsArrayList = new ArrayList<>();
         String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
         String[] wing = {"N", "S", "E", "W"};
         int count = 1;
         //rooms
-        for (int k = 0; k < 9; k ++) {
-            for (int w = 0; w < 4; w ++) {
+        for (int k = 0; k < 9; k++) {
+            for (int w = 0; w < 4; w++) {
                 for (int i = 1; i <= 20; i++) {
                     String name = floors[k] + wing[w] + i;
                     Rooms room = new Rooms(name, count);
                     roomsArrayList.add(room);
-                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count-1).getRoomID() + ", ' " + roomsArrayList.get(count-1).getRoom() + "' );");
-                    count ++;
+                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", ' " + roomsArrayList.get(count - 1).getRoom() + "' );");
+                    count++;
                 }
             }
         }
         return roomsArrayList;
     }
 
-    public static ArrayList<AssignmentType> generateAssignmentType() throws IOException{
+    public static ArrayList<AssignmentType> generateAssignmentType() throws IOException {
         ArrayList<AssignmentType> assignmentTypeArrayList = new ArrayList<>();
-        String [] types = {"Minor Assessment", "Major Assessment"};
+        String[] types = {"Minor Assessment", "Major Assessment"};
         for (int i = 1; i <= types.length; i++) {
-            String name = types[i-1];
+            String name = types[i - 1];
             AssignmentType assignmentType = new AssignmentType(i - 1, name);
             assignmentTypeArrayList.add(assignmentType);
-            System.out.println("INSERT INTO Assignment_Type ( Assignment_TypeID, Assignment_Type ) VALUES ( " + i + ", ' " + types[i-1] + "' );");
+            System.out.println("INSERT INTO Assignment_Type ( Assignment_TypeID, Assignment_Type ) VALUES ( " + i + ", ' " + types[i - 1] + "' );");
         }
         return assignmentTypeArrayList;
     }
 
-    public static ArrayList<Courses> generateCourses() throws IOException{
+    public static ArrayList<Courses> generateCourses() throws IOException {
         ArrayList<Courses> coursesArrayList = new ArrayList<>();
         ArrayList<String> all_courses = new ArrayList<>();
         ArrayList<String> data = getFileData("src/courses");
 
         ArrayList<String> fileData = getFileData("src/courses");
         ArrayList<String> course = new ArrayList<>();
-        for(int i = 1; i <= fileData.size(); i ++){
-            String name = fileData.get(i-1);
+        for (int i = 1; i <= fileData.size(); i++) {
+            String name = fileData.get(i - 1);
             int typeid = 0;
-            if(name.contains("AP") && !name.contains("Pre-AP")){
+            if (name.contains("AP") && !name.contains("Pre-AP")) {
                 typeid = 1;
                 System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 1 + ");");
-            }
-            else if(name.contains("Regents")){
+            } else if (name.contains("Regents")) {
                 typeid = 2;
                 System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 2 + ");");
-            }
-            else {
+            } else {
                 typeid = 3;
                 System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 3 + ");");
             }
@@ -214,18 +212,19 @@ public class testing {
         }
         return coursesArrayList;
     }
+
     //classes is basically course offerings
-    public static ArrayList<Classes> generateClasses() throws IOException{
+    public static ArrayList<Classes> generateClasses() throws IOException {
         /*private int classID;
         private int period;
         private int teacherID;
         private int courseID;
         private int roomID;*/
         ArrayList<Classes> classesArrayList = new ArrayList<>();
-        for(int i = 0; i < generateCourses().size(); i ++){
-            int offerings = (int) (Math.random() * (5-1+1)) + 1;
+        for (int i = 0; i < generateCourses().size(); i++) {
+            int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1;
             int courseID = generateCourses().get(i).getCourseid();
-            for(int k = 0; k < offerings; k ++){
+            for (int k = 0; k < offerings; k++) {
 
             }
             //list of classes, adding as we go on instead of adding to list being the final action.
@@ -236,3 +235,64 @@ public class testing {
         return classesArrayList;
     }
 }
+    /*public static ArrayList<ClassOffering> generateClasses(ArrayList<Course> courses, ArrayList<Teacher> teachers, ArrayList<Room> rooms, int numberOfClasses) {
+        ArrayList<ClassOffering> classOfferings = new ArrayList<>();
+        HashMap<Integer, Set<Integer>> roomSchedule = new HashMap<>(); // period -> set of roomIds
+
+        for (int i = 1; i <= 8; i++) {
+            roomSchedule.put(i, new HashSet<>());
+        }
+
+        for (int i = 0; i < numberOfClasses; i++) {
+            // Pick a random course
+            Course course = courses.get((int)(Math.random() * courses.size()));
+            int courseId = course.courseId;
+            int departmentId = course.departmentId;
+
+            // Find teachers who belong to the same department
+            ArrayList<Teacher> qualifiedTeachers = new ArrayList<>();
+            for (Teacher teacher : teachers) {
+                if (teacher.departmentId == departmentId) {
+                    qualifiedTeachers.add(teacher);
+                }
+            }
+
+            if (qualifiedTeachers.isEmpty()) {
+                // No qualified teacher found, skip this class
+                i--;
+                continue;
+            }
+
+            // Pick a random qualified teacher
+            Teacher assignedTeacher = qualifiedTeachers.get((int)(Math.random() * qualifiedTeachers.size()));
+
+            // Pick a random period (1-8)
+            int period = (int)(Math.random() * 8) + 1;
+
+            // Find available rooms for that period
+            ArrayList<Room> availableRooms = new ArrayList<>();
+            for (Room room : rooms) {
+                if (!roomSchedule.get(period).contains(room.roomId)) {
+                    availableRooms.add(room);
+                }
+            }
+
+            if (availableRooms.isEmpty()) {
+                // No room available at that period, skip and try again
+                i--;
+                continue;
+            }
+
+            // Pick a random available room
+            Room assignedRoom = availableRooms.get((int)(Math.random() * availableRooms.size()));
+
+            // Mark the room as occupied at that period
+            roomSchedule.get(period).add(assignedRoom.roomId);
+
+            // Create the class offering
+            ClassOffering newClass = new ClassOffering(courseId, assignedTeacher.teacherId, assignedRoom.roomId, period);
+            classOfferings.add(newClass);
+        }
+
+        return classOfferings;
+    } */
