@@ -108,3 +108,60 @@
                 }
             }
         } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static void generateClasses() {
+            int totalClasses = 10; // Number of classes to generate
+
+            // Loop through and generate classes
+            for (int i = 0; i < totalClasses; i++) {
+                // Randomly choose a course and room
+                Courses course = Courses.get((int)(Math.random() * Courses.size()));
+                Rooms room = Rooms.get((int)(Math.random() * Rooms.size()));
+
+                // Randomly assign a teacher, ensuring no teacher is left out
+                Teachers teacher = Teachers.get((int)(Math.random() * Teachers.size()));
+
+                // Create the class instance and assign teacher, course, and room
+                Classes newClass = new Classes(course, room, teacher);
+
+                // Add the new class to the global classes list
+                Classes.add(newClass);
+
+                // Ensure that teacher is added to the course's list of classes
+                if (teacher.classes == null) {
+                    teacher.classes = new ArrayList<>();
+                }
+                teacher.classes.add(newClass); // Add class to teacher's class list
+            }
+
+            // Now, ensure that every teacher has at least one class assigned
+            for (Teachers teacher : Teachers) {
+                if (teacher.classes == null || teacher.classes.size() == 0) {
+                    // If the teacher doesn't have any class, assign them to a new one
+                    Courses defaultCourse = Courses.get((int)(Math.random() * Courses.size()));
+                    Rooms defaultRoom = Rooms.get((int)(Math.random() * Rooms.size()));
+                    Classes defaultClass = new Classes(defaultCourse, defaultRoom, teacher);
+                    Classes.add(defaultClass);
+                    teacher.classes = new ArrayList<>();
+                    teacher.classes.add(defaultClass);
+                }
+            }
+        }
