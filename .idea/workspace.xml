@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/s" beforeDir="false" afterPath="$PROJECT_DIR$/src/s" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +34,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MuyunZhang/Database-Design-Project&quot;,
-    &quot;accountId&quot;: &quot;0b6c3c55-dd6c-448a-9488-79f7c09362bf&quot;
+    &quot;url&quot;: &quot;https://github.com/MuyunZhang/Database-Design-Project.git&quot;,
+    &quot;accountId&quot;: &quot;5dd33b6a-3e11-4f3c-b6d2-cb5cda6a4f5c&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{

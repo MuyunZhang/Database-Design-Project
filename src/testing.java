@@ -11,6 +11,16 @@ public class testing {
     static String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
     static String[] wings = {"N", "S", "E", "W"};
 
+    static ArrayList<Teachers> Teachers;
+
+    static {
+        try {
+            Teachers = generateTeachers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static ArrayList<Departments> Departments;
 
     static {
@@ -52,16 +62,6 @@ public class testing {
     }
 
     static ArrayList<Students> Students = generateStudents();
-
-    static ArrayList<Teachers> Teachers;
-
-    static {
-        try {
-            Teachers = generateTeachers();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     static ArrayList<Classes> Classes;
 
@@ -114,16 +114,15 @@ public class testing {
             department.add(Department);
         }
 
-        ArrayList<Departments> Departments = generateDepartments();
+        /*ArrayList<Departments> Departments = generateDepartments();
         generateStudents();
         generateTeachers();
         generateDepartments();
         generateRooms();
         generateCourseTypes();
         generateCourses();
-        generateClasses();
-        generateAssignmentType();
-        generateAssignments();
+        generateClasses(); */
+        //generateAssignmentType();
         /*for (int i = 1; i <= fileData.size(); i++) {
             if (department.get(i - 1).contains("Biology")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
@@ -208,11 +207,25 @@ public class testing {
                     de = Departments.get(k).getDepartmentID();
                 }
             }
-            Teachers teachers = new Teachers(i, name, de, i); //incomplete
-            teachersArrayList.add(teachers);
+            ArrayList<Integer> classid = new ArrayList<Integer>();
+            for (int j = 0; j < Classes.size(); j ++){
+                int teachid = Classes.get(j).getTeacherID();
+                if(teachid == i){
+                    int idforclass = Classes.get(j).getClassID();
+                    classid.add(idforclass);
+                }
+            }
+            for (int g = 0; g < classid.size(); g++){
+                for(int o = 0; o < Assignments.size(); o++){
+                    if(Assignments.get(o).getClassid() == g+1){
+                        Teachers teachers = new Teachers(i, name, de, o+1); //incomplete
+                        teachersArrayList.add(teachers);
+                    }
+                }
+            }
         }
         for (int i = 0; i < teachersArrayList.size(); i++) {
-            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9 + ", " + 9 + " );");
+            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID, Assignment_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9 + ", " + teachersArrayList.get(i).getAssignmentid() + " );");
         }
         return teachersArrayList;
     }
@@ -311,8 +324,14 @@ public class testing {
         int classIDCounter = 1;
 
         ArrayList<Courses> courseArrayList = generateCourses();
-        ArrayList<Rooms> roomArrayList = generateRooms();
-        ArrayList<Teachers> teacherArrayList = generateTeachers();
+        ArrayList<String> fileData = getFileData("src/teachers");
+        ArrayList<String> teacher = new ArrayList<>();
+        for (int i = 0; i < fileData.size(); i++) {
+            int len = fileData.size();
+            String[] list = fileData.get(i).split("\\|");
+            String teacher_name = list[0];
+            teacher.add(teacher_name);
+        }
 
         for (int i = 0; i < courseArrayList.size(); i++) {
             int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1; // 1 to 5 offerings
@@ -337,7 +356,7 @@ public class testing {
                         }
                     }
                 }
-                int teacherID = (int) (Math.random() * teacherArrayList.size()) + 1;
+                int teacherID = (int) (Math.random() * teacher.size()) + 1;
 
                 Classes newClass = new Classes(classIDCounter, randomPeriod, teacherID, courseID, whichroom);
                 classesArrayList.add(newClass);
@@ -365,8 +384,6 @@ public class testing {
         ArrayList<Assignments> assignmentsArrayList = new ArrayList<>();
         int assignmentIDCounter = 1;
 
-        // Assume you have AssignmentType generated already
-        // minor type = 1, major type = 2
         int minorTypeID = 1;
         int majorTypeID = 2;
 
@@ -397,15 +414,16 @@ public class testing {
                     + assignmentsArrayList.get(i).getClassid() + ", "
                     + assignmentsArrayList.get(i).getTypeid() + ");");
         }
-
         return assignmentsArrayList;
     }
 
 
     public static ArrayList<Grades> generateGrades() throws IOException{
         ArrayList<Grades> gradesArrayList = new ArrayList<>();
+        for(int i = 0; i < Students.size(); i ++){
 
-
+        }
+        int grade = (int) (Math.random() * 100 - 75) + 75;
 
 
         return gradesArrayList;
