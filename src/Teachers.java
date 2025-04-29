@@ -60,12 +60,9 @@ public class Teachers {
 
     int departmentid;
 
-    int assignmentid;
-
     String name;
 
-    public Teachers(int teacherid, String name, int departmentid, int assignmentid){
-        this.assignmentid = assignmentid;
+    public Teachers(int teacherid, String name, int departmentid){
         this.name = name;
         this.teacherid = teacherid;
         this.departmentid = departmentid;
@@ -94,15 +91,6 @@ public class Teachers {
     public int getDepartmentid(){
         return departmentid;
     }
-
-    public void setAssignmentid(int id){
-        assignmentid = id;
-    }
-
-    public int getAssignmentid(){
-        return assignmentid;
-    }
-
 
     public static ArrayList<String> getFileData(String fileName) {
         ArrayList<String> fileData = new ArrayList<String>();

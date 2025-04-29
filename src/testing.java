@@ -7,19 +7,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class testing {
-    static Random rand = new Random();
-    static String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
-    static String[] wings = {"N", "S", "E", "W"};
-
-    static ArrayList<Teachers> Teachers;
-
-    static {
-        try {
-            Teachers = generateTeachers();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     static ArrayList<Departments> Departments;
 
@@ -62,6 +49,15 @@ public class testing {
     }
 
     static ArrayList<Students> Students = generateStudents();
+
+    static ArrayList<Teachers> Teachers;
+    static {
+        try {
+            Teachers = generateTeachers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     static ArrayList<Classes> Classes;
 
@@ -207,25 +203,11 @@ public class testing {
                     de = Departments.get(k).getDepartmentID();
                 }
             }
-            ArrayList<Integer> classid = new ArrayList<Integer>();
-            for (int j = 0; j < Classes.size(); j ++){
-                int teachid = Classes.get(j).getTeacherID();
-                if(teachid == i){
-                    int idforclass = Classes.get(j).getClassID();
-                    classid.add(idforclass);
-                }
-            }
-            for (int g = 0; g < classid.size(); g++){
-                for(int o = 0; o < Assignments.size(); o++){
-                    if(Assignments.get(o).getClassid() == g+1){
-                        Teachers teachers = new Teachers(i, name, de, o+1); //incomplete
-                        teachersArrayList.add(teachers);
-                    }
-                }
-            }
+            Teachers teachers = new Teachers(i, name, de); //incomplete
+            teachersArrayList.add(teachers);
         }
         for (int i = 0; i < teachersArrayList.size(); i++) {
-            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID, Assignment_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9 + ", " + teachersArrayList.get(i).getAssignmentid() + " );");
+            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID, Assignment_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9  + " );");
         }
         return teachersArrayList;
     }
