@@ -11,6 +11,88 @@ public class testing {
     static String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
     static String[] wings = {"N", "S", "E", "W"};
 
+    static ArrayList<Departments> Departments;
+
+    static {
+        try {
+            Departments = generateDepartments();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<Rooms> Rooms;
+
+    static {
+        try {
+            Rooms = generateRooms();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<CourseType> Coursetypes;
+
+    static {
+        try {
+            Coursetypes = generateCourseTypes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<Courses> Courses;
+
+    static {
+        try {
+            Courses = generateCourses();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<Students> Students = generateStudents();
+
+    static ArrayList<Teachers> Teachers;
+
+    static {
+        try {
+            Teachers = generateTeachers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<Classes> Classes;
+
+    static {
+        try {
+            Classes = generateClasses();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<Assignments> Assignments;
+
+    static {
+        try {
+            Assignments = generateAssignments();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static ArrayList<AssignmentType> AssignmentTypes;
+
+    static {
+        try {
+            AssignmentTypes = generateAssignmentType();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public static void main(String[] args) throws IOException {
 
@@ -31,10 +113,17 @@ public class testing {
             String Department = list[1];
             department.add(Department);
         }
+
+        ArrayList<Departments> Departments = generateDepartments();
+        generateStudents();
+        generateTeachers();
         generateDepartments();
         generateRooms();
         generateCourseTypes();
         generateCourses();
+        generateClasses();
+        generateAssignmentType();
+        generateAssignments();
         /*for (int i = 1; i <= fileData.size(); i++) {
             if (department.get(i - 1).contains("Biology")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
@@ -89,7 +178,7 @@ public class testing {
             String newName = "Student" + i;
             Students student = new Students(newName, i, i);
             studentArrayList.add(student);
-            //System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
+            System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
         return studentArrayList;
     }
@@ -114,9 +203,9 @@ public class testing {
         for (int i = 1; i <= teacher.size(); i++) {
             String name = teacher.get(i - 1);
             int de = 0;
-            for (int k = 0; k < generateDepartments().size(); k++) {
-                if (generateDepartments().get(k).getDepartmentName().contains(department.get(k))) {
-                    de = generateDepartments().get(k).getDepartmentID();
+            for (int k = 0; k < Departments.size(); k++) {
+                if (Departments.get(k).getDepartmentName().contains(department.get(k))) {
+                    de = Departments.get(k).getDepartmentID();
                 }
             }
             Teachers teachers = new Teachers(i, name, de, i); //incomplete
@@ -212,23 +301,134 @@ public class testing {
         }
         return coursesArrayList;
     }
-
-    //classes is basically course offerings
     public static ArrayList<Classes> generateClasses() throws IOException {
+    /* private int classID;
+       private int period;
+       private int teacherID;
+       private int courseID;
+       private int roomID; */
+        ArrayList<Classes> classesArrayList = new ArrayList<>();
+        int classIDCounter = 1;
+
+        ArrayList<Courses> courseArrayList = generateCourses();
+        ArrayList<Rooms> roomArrayList = generateRooms();
+        ArrayList<Teachers> teacherArrayList = generateTeachers();
+
+        for (int i = 0; i < courseArrayList.size(); i++) {
+            int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1; // 1 to 5 offerings
+            int courseID = Courses.get(i).getCourseid();
+            int roommax = Rooms.size();
+
+            for (int k = 0; k < offerings; k++) {
+                boolean unique = false;
+                int randomPeriod = 0;
+                int whichroom = 0;
+
+                while (!unique) {
+                    randomPeriod = (int) (Math.random() * 10) + 1; // Period 1 to 10
+                    whichroom = (int) (Math.random() * roommax) + 1; // Room 1 to roommax
+
+                    unique = true;
+                    for (int g = 0; g < classesArrayList.size(); g++) {
+                        if (classesArrayList.get(g).getPeriod() == randomPeriod &&
+                                classesArrayList.get(g).getRoomID() == whichroom) {
+                            unique = false;
+                            break;
+                        }
+                    }
+                }
+                int teacherID = (int) (Math.random() * teacherArrayList.size()) + 1;
+
+                Classes newClass = new Classes(classIDCounter, randomPeriod, teacherID, courseID, whichroom);
+                classesArrayList.add(newClass);
+                classIDCounter++;
+            }
+        }
+
+        for (int i = 0; i < classesArrayList.size(); i++) {
+            System.out.println("INSERT INTO Classes (Class_ID, Period, Course_ID, Teacher_ID, Room_ID) VALUES ("
+                    + classesArrayList.get(i).getClassID() + ", "
+                    + classesArrayList.get(i).getPeriod() + ", "
+                    + classesArrayList.get(i).getCourseID() + ", "
+                    + classesArrayList.get(i).getTeacherID() + ", "
+                    + classesArrayList.get(i).getRoomID() + ");");
+        }
+        return classesArrayList;
+    }
+
+    public static ArrayList<Assignments> generateAssignments() throws IOException {
+    /* private String name;
+       private int id;
+       private int typeid;
+       private int classid; */
+
+        ArrayList<Assignments> assignmentsArrayList = new ArrayList<>();
+        int assignmentIDCounter = 1;
+
+        // Assume you have AssignmentType generated already
+        // minor type = 1, major type = 2
+        int minorTypeID = 1;
+        int majorTypeID = 2;
+
+        for (int i = 0; i < Classes.size(); i++) {
+            int classID = Classes.get(i).getClassID();
+
+            // Create 12 minor assignments
+            for (int j = 0; j < 12; j++) {
+                String assignmentName = "Minor Assignment " + (j + 1) + " Class " + classID;
+                Assignments minorAssignment = new Assignments(assignmentName, assignmentIDCounter, minorTypeID, classID);
+                assignmentsArrayList.add(minorAssignment);
+                assignmentIDCounter++;
+            }
+
+            // Create 3 major assignments
+            for (int j = 0; j < 3; j++) {
+                String assignmentName = "Major Assignment " + (j + 1) + " Class " + classID;
+                Assignments majorAssignment = new Assignments(assignmentName, assignmentIDCounter, majorTypeID, classID);
+                assignmentsArrayList.add(majorAssignment);
+                assignmentIDCounter++;
+            }
+        }
+
+        for (int i = 0; i < assignmentsArrayList.size(); i++) {
+            System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
+                    + assignmentsArrayList.get(i).getName() + "', "
+                    + assignmentsArrayList.get(i).getId() + ", "
+                    + assignmentsArrayList.get(i).getClassid() + ", "
+                    + assignmentsArrayList.get(i).getTypeid() + ");");
+        }
+
+        return assignmentsArrayList;
+    }
+
+
+    public static ArrayList<Grades> generateGrades() throws IOException{
+        ArrayList<Grades> gradesArrayList = new ArrayList<>();
+
+
+
+
+        return gradesArrayList;
+    }
+}
+
+//classes is basically course offerings
+    /*public static ArrayList<Classes> generateClasses() throws IOException {
         /*private int classID;
         private int period;
         private int teacherID;
         private int courseID;
-        private int roomID;*/
+        private int roomID;
         ArrayList<Classes> classesArrayList = new ArrayList<>();
         for (int i = 0; i < generateCourses().size(); i++) {
             int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1;
             int courseID = generateCourses().get(i).getCourseid();
-            int current = 7;
-            if(classesArrayList.get(i).getRoomID() == current && classesArrayList.get(i).getPeriod() == 4)
+            int roommax = generateRooms().size();
+            int whichroom = (int) (Math.random() * roommax) +1;
+            System.out.println(whichroom);
             for (int k = 0; k < offerings; k++) {
                 for(int g = 0; g < classesArrayList.size(); g ++){
-
+                    if(classesArrayList.get(g).getRoomID() == 2 && classesArrayList.get(i).getPeriod() == 4)
                 }
             }
             //list of classes, adding as we go on instead of adding to list being the final action.
@@ -237,66 +437,4 @@ public class testing {
             // then loop again until the random values don't match any values in the table. this will make sure no classes will share same period AND room at the same time
         }
         return classesArrayList;
-    }
-}
-    /*public static ArrayList<ClassOffering> generateClasses(ArrayList<Course> courses, ArrayList<Teacher> teachers, ArrayList<Room> rooms, int numberOfClasses) {
-        ArrayList<ClassOffering> classOfferings = new ArrayList<>();
-        HashMap<Integer, Set<Integer>> roomSchedule = new HashMap<>(); // period -> set of roomIds
-
-        for (int i = 1; i <= 8; i++) {
-            roomSchedule.put(i, new HashSet<>());
-        }
-
-        for (int i = 0; i < numberOfClasses; i++) {
-            // Pick a random course
-            Course course = courses.get((int)(Math.random() * courses.size()));
-            int courseId = course.courseId;
-            int departmentId = course.departmentId;
-
-            // Find teachers who belong to the same department
-            ArrayList<Teacher> qualifiedTeachers = new ArrayList<>();
-            for (Teacher teacher : teachers) {
-                if (teacher.departmentId == departmentId) {
-                    qualifiedTeachers.add(teacher);
-                }
-            }
-
-            if (qualifiedTeachers.isEmpty()) {
-                // No qualified teacher found, skip this class
-                i--;
-                continue;
-            }
-
-            // Pick a random qualified teacher
-            Teacher assignedTeacher = qualifiedTeachers.get((int)(Math.random() * qualifiedTeachers.size()));
-
-            // Pick a random period (1-8)
-            int period = (int)(Math.random() * 8) + 1;
-
-            // Find available rooms for that period
-            ArrayList<Room> availableRooms = new ArrayList<>();
-            for (Room room : rooms) {
-                if (!roomSchedule.get(period).contains(room.roomId)) {
-                    availableRooms.add(room);
-                }
-            }
-
-            if (availableRooms.isEmpty()) {
-                // No room available at that period, skip and try again
-                i--;
-                continue;
-            }
-
-            // Pick a random available room
-            Room assignedRoom = availableRooms.get((int)(Math.random() * availableRooms.size()));
-
-            // Mark the room as occupied at that period
-            roomSchedule.get(period).add(assignedRoom.roomId);
-
-            // Create the class offering
-            ClassOffering newClass = new ClassOffering(courseId, assignedTeacher.teacherId, assignedRoom.roomId, period);
-            classOfferings.add(newClass);
-        }
-
-        return classOfferings;
     } */
