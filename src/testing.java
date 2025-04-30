@@ -48,7 +48,6 @@ public class testing {
         }
     }
 
-    static ArrayList<Students> Students = generateStudents();
 
     static ArrayList<Teachers> Teachers;
     static {
@@ -78,6 +77,8 @@ public class testing {
             throw new RuntimeException(e);
         }
     }
+
+    static ArrayList<Students> Students = generateStudents();
 
     static ArrayList<AssignmentType> AssignmentTypes;
 
@@ -201,13 +202,15 @@ public class testing {
             for (int k = 0; k < Departments.size(); k++) {
                 if (Departments.get(k).getDepartmentName().contains(department.get(k))) {
                     de = Departments.get(k).getDepartmentID();
+                    System.out.println(de);
                 }
             }
             Teachers teachers = new Teachers(i, name, de); //incomplete
             teachersArrayList.add(teachers);
         }
         for (int i = 0; i < teachersArrayList.size(); i++) {
-            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID, Assignment_ID ) VALUES ( " + i + ", '" + teachersArrayList.get(i).getName() + "'" + ", " + 9  + " );");
+            int k = i + 1;
+            System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID) VALUES ( " + k + ", \"" + teachersArrayList.get(i).getName() + "\"" + ", " + teachersArrayList.get(i).getDepartmentid()  + " );");
         }
         return teachersArrayList;
     }
@@ -283,13 +286,13 @@ public class testing {
             int typeid = 0;
             if (name.contains("AP") && !name.contains("Pre-AP")) {
                 typeid = 1;
-                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 1 + ");");
+                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", \"" + name + "\", " + 1 + ");");
             } else if (name.contains("Regents")) {
                 typeid = 2;
-                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 2 + ");");
+                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", \"" + name + "\", " + 2 + ");");
             } else {
                 typeid = 3;
-                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", '" + name + "', " + 3 + ");");
+                System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", \"" + name + "\", " + 3 + ");");
             }
             Courses courses = new Courses(i, name, typeid);
             coursesArrayList.add(courses);
