@@ -24,7 +24,10 @@ public class Teachers {
             String Department = list[1];
             department.add(Department);
         }
-        for(int i = 1; i <= fileData.size(); i ++){
+        for(int i = 0; i < department.size(); i ++){
+            System.out.println(teacher.get(i) + i);
+        }
+        for(int i = 1; i <= teacher.size(); i ++){
             if(department.get(i-1).contains("Biology")){
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 1 + " );");
             }
@@ -35,6 +38,9 @@ public class Teachers {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 3 + " );");
             }
             if(department.get(i-1).contains("English")){
+                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 4 + " );");
+            }
+            if(department.get(i-1).contains("Health & PE")){
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 4 + " );");
             }
             if(department.get(i-1).contains("Mathematics")){

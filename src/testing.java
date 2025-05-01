@@ -217,7 +217,7 @@ public class testing {
 
     public static ArrayList<Departments> generateDepartments() throws IOException {
         ArrayList<Departments> departmentsArrayList = new ArrayList<>();
-        String[] departments = {"Biology", "Chemistry", "CTE, Computer Science & Engineering", "English",
+        String[] departments = {"Biology", "Chemistry", "CTE, Computer Science & Engineering", "English", "Health & PE",
                 "Mathematics", "Physics", "Social Studies", "Visual & Performing Arts", "World Languages & ENL"};
         System.out.println(departments.length);
         for (int i = 1; i <= departments.length; i++) {
