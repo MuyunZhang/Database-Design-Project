@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -283,7 +284,7 @@ public class testing {
                     String name = floors[k] + wing[w] + i;
                     Rooms room = new Rooms(name, count);
                     roomsArrayList.add(room);
-                    //System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", ' " + roomsArrayList.get(count - 1).getRoom() + "' );");
+                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", ' " + roomsArrayList.get(count - 1).getRoom() + "' );");
                     count++;
                 }
             }
@@ -298,7 +299,7 @@ public class testing {
             String name = types[i - 1];
             AssignmentType assignmentType = new AssignmentType(i - 1, name);
             assignmentTypeArrayList.add(assignmentType);
-            System.out.println("INSERT INTO Assignment_Type ( Assignment_TypeID, Assignment_Type ) VALUES ( " + i + ", ' " + types[i - 1] + "' );");
+            System.out.println("INSERT INTO Assignment_Type ( Assignment_TypeID, Assignment_Type ) VALUES ( " + i + ", '" + types[i - 1] + "' );");
         }
         return assignmentTypeArrayList;
     }
@@ -422,20 +423,33 @@ public class testing {
         }
 
         for (int i = 0; i < assignmentsArrayList.size(); i++) {
-            /*System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
+            System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
                     + assignmentsArrayList.get(i).getName() + "', "
                     + assignmentsArrayList.get(i).getId() + ", "
                     + assignmentsArrayList.get(i).getClassid() + ", "
-                    + assignmentsArrayList.get(i).getTypeid() + ");");*/
+                    + assignmentsArrayList.get(i).getTypeid() + ");");
         }
         return assignmentsArrayList;
+    }
+
+    public static ArrayList<Schedule> generateSchedules() throws IOException{
+        ArrayList<Schedule> scheduleArrayList = new ArrayList<Schedule>();
+        /*private int scheduleID;
+        private int studentID;
+        private int classID;*/
+
+        for(int period = 1; period <= 10; period ++){
+            for(int i = 0; i < Classes.size(); i ++){
+
+            }
+        }
+        return scheduleArrayList;
     }
 
 
     public static ArrayList<Grades> generateGrades() throws IOException{
         ArrayList<Grades> gradesArrayList = new ArrayList<>();
         for(int i = 0; i < Students.size(); i ++){
-
         }
         int grade = (int) (Math.random() * 100 - 75) + 75;
 

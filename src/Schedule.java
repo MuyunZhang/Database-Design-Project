@@ -1,8 +1,10 @@
 public class Schedule {
+    private int scheduleID;
     private int studentID;
     private int classID;
 
-    public Schedule(int studentID, int classID){
+    public Schedule(int scheduleID, int studentID, int classID){
+        this.scheduleID = scheduleID;
         this.classID = classID;
         this.studentID = studentID;
     }
