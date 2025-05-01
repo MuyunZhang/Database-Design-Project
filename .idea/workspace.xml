@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a3ca7142-9fa9-4648-b5bd-a2cecde95e03" name="Changes" comment="testing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Departments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Departments.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Teachers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teachers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/teachers" beforeDir="false" afterPath="$PROJECT_DIR$/src/teachers" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +33,12 @@
     &quot;assignee&quot;: &quot;MuyunZhang&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MuyunZhang/Database-Design-Project.git&quot;,
-    &quot;accountId&quot;: &quot;5dd33b6a-3e11-4f3c-b6d2-cb5cda6a4f5c&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MuyunZhang/Database-Design-Project",
+    "accountId": "adf637a7-0aac-4f51-88a7-aec1fe755678"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -166,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745901114947</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="testing">
+      <option name="closed" value="true" />
+      <created>1746117396019</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1746117396019</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

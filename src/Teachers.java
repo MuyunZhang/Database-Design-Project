@@ -58,7 +58,6 @@ public class Teachers {
             if(department.get(i-1).contains("World Languages & ENL")){
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i-1) + "'" + ", " + 9 + " );");
             }
-
         }
     }
 

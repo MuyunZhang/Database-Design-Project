@@ -174,11 +174,10 @@ public class testing {
             String newName = "Student" + i;
             Students student = new Students(newName, i, i);
             studentArrayList.add(student);
-            System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
+            //System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
         return studentArrayList;
     }
-
     public static ArrayList<Teachers> generateTeachers() throws IOException {
         ArrayList<Teachers> teachersArrayList = new ArrayList<>();
         ArrayList<String> fileData = getFileData("src/teachers");
@@ -190,23 +189,54 @@ public class testing {
             String teacher_name = list[0];
             teacher.add(teacher_name);
         }
+        System.out.println(teacher.size());
         for (int i = 0; i < fileData.size(); i++) {
             int len = fileData.size();
             String[] list = fileData.get(i).split("\\|");
             String Department = list[1];
             department.add(Department);
         }
-        for (int i = 1; i <= teacher.size(); i++) {
-            String name = teacher.get(i - 1);
-            int de = 0;
-            for (int k = 0; k < Departments.size(); k++) {
-                if (Departments.get(k).getDepartmentName().contains(department.get(k))) {
-                    de = Departments.get(k).getDepartmentID();
-                    System.out.println(de);
-                }
+        for(int i = 1; i <= teacher.size(); i ++){
+            if(department.get(i-1).contains("Biology")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 1); //incomplete
+                teachersArrayList.add(teachers);
             }
-            Teachers teachers = new Teachers(i, name, de); //incomplete
-            teachersArrayList.add(teachers);
+            if(department.get(i-1).contains("Chemistry")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 2);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("CTE, Computer Science & Engineering")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 3);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("English")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 4);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("Health & PE")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 5);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("Mathematics")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 6);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("Physics")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 7);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("Social Studies")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 8);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("Visual & Performing Arts")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 9);
+                teachersArrayList.add(teachers);
+            }
+            if(department.get(i-1).contains("World Languages & ENL")){
+                Teachers teachers = new Teachers(i, teacher.get(i-1), 10);
+                teachersArrayList.add(teachers);
+            }
         }
         for (int i = 0; i < teachersArrayList.size(); i++) {
             int k = i + 1;
@@ -219,13 +249,12 @@ public class testing {
         ArrayList<Departments> departmentsArrayList = new ArrayList<>();
         String[] departments = {"Biology", "Chemistry", "CTE, Computer Science & Engineering", "English", "Health & PE",
                 "Mathematics", "Physics", "Social Studies", "Visual & Performing Arts", "World Languages & ENL"};
-        System.out.println(departments.length);
         for (int i = 1; i <= departments.length; i++) {
             String name = departments[i - 1];
             Departments department = new Departments(name, i);
             departmentsArrayList.add(department);
             String depart = "'" + departments[i - 1] + "'";
-            System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + departmentsArrayList.get(i - 1).getDepartmentID() + ", " + departmentsArrayList.get(i - 1).getDepartmentName() + " );");
+            System.out.println("INSERT INTO Departments ( Department_ID, Department_Name ) VALUES ( " + departmentsArrayList.get(i - 1).getDepartmentID() + ", \"" + departmentsArrayList.get(i - 1).getDepartmentName() + "\" );");
         }
         return departmentsArrayList;
     }
@@ -254,7 +283,7 @@ public class testing {
                     String name = floors[k] + wing[w] + i;
                     Rooms room = new Rooms(name, count);
                     roomsArrayList.add(room);
-                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", ' " + roomsArrayList.get(count - 1).getRoom() + "' );");
+                    //System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", ' " + roomsArrayList.get(count - 1).getRoom() + "' );");
                     count++;
                 }
             }
@@ -393,11 +422,11 @@ public class testing {
         }
 
         for (int i = 0; i < assignmentsArrayList.size(); i++) {
-            System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
+            /*System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
                     + assignmentsArrayList.get(i).getName() + "', "
                     + assignmentsArrayList.get(i).getId() + ", "
                     + assignmentsArrayList.get(i).getClassid() + ", "
-                    + assignmentsArrayList.get(i).getTypeid() + ");");
+                    + assignmentsArrayList.get(i).getTypeid() + ");");*/
         }
         return assignmentsArrayList;
     }
