@@ -9,6 +9,16 @@ import java.util.Scanner;
 
 public class testing {
 
+    static ArrayList<AssignmentType> AssignmentTypes;
+
+    static {
+        try {
+            AssignmentTypes = generateAssignmentType();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static ArrayList<Departments> Departments;
 
     static {
@@ -81,15 +91,6 @@ public class testing {
 
     static ArrayList<Students> Students = generateStudents();
 
-    static ArrayList<AssignmentType> AssignmentTypes;
-
-    static {
-        try {
-            AssignmentTypes = generateAssignmentType();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
     public static void main(String[] args) throws IOException {
@@ -111,6 +112,7 @@ public class testing {
             String Department = list[1];
             department.add(Department);
         }
+        generateSchedules();
 
         /*ArrayList<Departments> Departments = generateDepartments();
         generateStudents();
@@ -123,7 +125,7 @@ public class testing {
         //generateAssignmentType();
         /*for (int i = 1; i <= fileData.size(); i++) {
             if (department.get(i - 1).contains("Biology")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
+                System.out.println("INSERT INTO Teacher s ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
             }
             if (department.get(i - 1).contains("Chemistry")) {
                 System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 2 + " );");
@@ -380,12 +382,12 @@ public class testing {
         }
 
         for (int i = 0; i < classesArrayList.size(); i++) {
-            System.out.println("INSERT INTO Classes (Class_ID, Period, Course_ID, Teacher_ID, Room_ID) VALUES ("
+            /*System.out.println("INSERT INTO Classes (Class_ID, Period, Course_ID, Teacher_ID, Room_ID) VALUES ("
                     + classesArrayList.get(i).getClassID() + ", "
                     + classesArrayList.get(i).getPeriod() + ", "
                     + classesArrayList.get(i).getCourseID() + ", "
                     + classesArrayList.get(i).getTeacherID() + ", "
-                    + classesArrayList.get(i).getRoomID() + ");");
+                    + classesArrayList.get(i).getRoomID() + ");");*/
         }
         return classesArrayList;
     }
@@ -423,11 +425,11 @@ public class testing {
         }
 
         for (int i = 0; i < assignmentsArrayList.size(); i++) {
-            System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
+            /*System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
                     + assignmentsArrayList.get(i).getName() + "', "
                     + assignmentsArrayList.get(i).getId() + ", "
                     + assignmentsArrayList.get(i).getClassid() + ", "
-                    + assignmentsArrayList.get(i).getTypeid() + ");");
+                    + assignmentsArrayList.get(i).getTypeid() + ");");*/
         }
         return assignmentsArrayList;
     }
@@ -437,10 +439,24 @@ public class testing {
         /*private int scheduleID;
         private int studentID;
         private int classID;*/
-
-        for(int period = 1; period <= 10; period ++){
-            for(int i = 0; i < Classes.size(); i ++){
-
+        int scheduleID = 0;
+        for(int s = 0; s < Students.size(); s ++) {
+            ArrayList<Classes> studentClasses = new ArrayList<>();
+            for (int period = 1; period <= 10; period++) {
+                int randomClassID = (int) (Math.random() * Classes.size()) + 1;
+                boolean isValid = false;
+                while (!isValid){
+                    if(Classes.get(randomClassID - 1).getPeriod() == period){
+                        scheduleID ++;
+                        Schedule schedule = new Schedule(scheduleID, s+1, Classes.get(randomClassID - 1).getClassID());
+                        scheduleArrayList.add(schedule);
+                        System.out.println("INSERT INTO Schedule (Schedule_ID, Student_ID, Class_ID) VALUES (" + (scheduleID) + ", " + scheduleArrayList.get(scheduleID - 1).getStudentID() + ", " + scheduleArrayList.get(scheduleID - 1).getClassID() + ");");
+                        isValid = true;
+                    }
+                    else{
+                        randomClassID = (int) (Math.random() * Classes.size()) + 1;
+                    }
+                }
             }
         }
         return scheduleArrayList;
