@@ -58,17 +58,6 @@ public class testing {
             throw new RuntimeException(e);
         }
     }
-
-
-    static ArrayList<Teachers> Teachers;
-    static {
-        try {
-            Teachers = generateTeachers();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     static ArrayList<Classes> Classes;
 
     static {
@@ -88,7 +77,14 @@ public class testing {
             throw new RuntimeException(e);
         }
     }
-
+    static ArrayList<Teachers> Teachers;
+    static {
+        try {
+            Teachers = generateTeachers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     static ArrayList<Students> Students = generateStudents();
 
     static ArrayList<Schedule> Schedules;
@@ -121,6 +117,7 @@ public class testing {
             String Department = list[1];
             department.add(Department);
         }
+        generateGrades();
     }
 
 
@@ -146,7 +143,7 @@ public class testing {
             String newName = "Student" + i;
             Students student = new Students(newName, i, i);
             studentArrayList.add(student);
-            //System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
+            System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
         return studentArrayList;
     }
@@ -394,11 +391,11 @@ public class testing {
         }
 
         for (int i = 0; i < assignmentsArrayList.size(); i++) {
-            /*System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
+            System.out.println("INSERT INTO Assignments (Assignment_Name, Assignment_ID, Class_ID, Assignment_TypeID) VALUES ('"
                     + assignmentsArrayList.get(i).getName() + "', "
                     + assignmentsArrayList.get(i).getId() + ", "
                     + assignmentsArrayList.get(i).getClassid() + ", "
-                    + assignmentsArrayList.get(i).getTypeid() + ");"); */
+                    + assignmentsArrayList.get(i).getTypeid() + ");");
         }
         return assignmentsArrayList;
     }
@@ -431,15 +428,18 @@ public class testing {
 
     public static ArrayList<Grades> generateGrades() throws IOException{
         ArrayList<Grades> gradesArrayList = new ArrayList<>();
+        int gradeid = -1;
         for(int i = 0; i < Schedules.size(); i ++){
-            int classid = Schedules.get(i).getClassID() - 1;
+            int classid = Schedules.get(i).getClassID();
             int student = Schedules.get(i).getStudentID();
             for(int k = 0; k < Assignments.size(); k ++){
                 if(Assignments.get(k).getClassid() == classid){
                     int grade = (int) (Math.random() * 26) + 75;
                     int assignmentid = Assignments.get(k).getId();
-                    Grades Grade = new Grades(grade, assignmentid,student);
+                    Grades Grade = new Grades(grade, assignmentid, student);
                     gradesArrayList.add(Grade);
+                    gradeid++;
+                    System.out.println("INSERT INTO Grades (Assignment_ID, Grade, Student_ID) VALUES (" + gradesArrayList.get(gradeid).getAssignmentID() + ", " + gradesArrayList.get(gradeid).getGrade() + ", " + gradesArrayList.get(gradeid).getStudentID() + ");");
                 }
             }
         }
