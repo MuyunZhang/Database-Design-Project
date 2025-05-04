@@ -91,6 +91,15 @@ public class testing {
 
     static ArrayList<Students> Students = generateStudents();
 
+    static ArrayList<Schedule> Schedules;
+
+    static {
+        try {
+            Schedules = generateSchedules();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public static void main(String[] args) throws IOException {
@@ -112,46 +121,6 @@ public class testing {
             String Department = list[1];
             department.add(Department);
         }
-        generateSchedules();
-
-        /*ArrayList<Departments> Departments = generateDepartments();
-        generateStudents();
-        generateTeachers();
-        generateDepartments();
-        generateRooms();
-        generateCourseTypes();
-        generateCourses();
-        generateClasses(); */
-        //generateAssignmentType();
-        /*for (int i = 1; i <= fileData.size(); i++) {
-            if (department.get(i - 1).contains("Biology")) {
-                System.out.println("INSERT INTO Teacher s ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 1 + " );");
-            }
-            if (department.get(i - 1).contains("Chemistry")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 2 + " );");
-            }
-            if (department.get(i - 1).contains("CTE, Computer Science & Engineering")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 3 + " );");
-            }
-            if (department.get(i - 1).contains("English")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 4 + " );");
-            }
-            if (department.get(i - 1).contains("Mathematics")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 5 + " );");
-            }
-            if (department.get(i - 1).contains("Physics")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 6 + " );");
-            }
-            if (department.get(i - 1).contains("Social Studies")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 7 + " );");
-            }
-            if (department.get(i - 1).contains("Visual & Performing Arts")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 8 + " );");
-            }
-            if (department.get(i - 1).contains("World Languages & ENL")) {
-                System.out.println("INSERT INTO Teachers ( Teacher_ID, Teacher_Name, Department_ID ) VALUES ( " + i + ", '" + teacher.get(i - 1) + "'" + ", " + 9 + " );");
-            }
-        } */
     }
 
 
@@ -286,7 +255,7 @@ public class testing {
                     String name = floors[k] + wing[w] + i;
                     Rooms room = new Rooms(name, count);
                     roomsArrayList.add(room);
-                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", ' " + roomsArrayList.get(count - 1).getRoom() + "' );");
+                    System.out.println("INSERT INTO Rooms ( Room_ID, Room_Name ) VALUES ( " + roomsArrayList.get(count - 1).getRoomID() + ", '" + roomsArrayList.get(count - 1).getRoom() + "' );");
                     count++;
                 }
             }
@@ -382,12 +351,12 @@ public class testing {
         }
 
         for (int i = 0; i < classesArrayList.size(); i++) {
-            /*System.out.println("INSERT INTO Classes (Class_ID, Period, Course_ID, Teacher_ID, Room_ID) VALUES ("
+            System.out.println("INSERT INTO Classes (Class_ID, Period, Course_ID, Teacher_ID, Room_ID) VALUES ("
                     + classesArrayList.get(i).getClassID() + ", "
                     + classesArrayList.get(i).getPeriod() + ", "
                     + classesArrayList.get(i).getCourseID() + ", "
                     + classesArrayList.get(i).getTeacherID() + ", "
-                    + classesArrayList.get(i).getRoomID() + ");");*/
+                    + classesArrayList.get(i).getRoomID() + ");");
         }
         return classesArrayList;
     }
@@ -429,16 +398,13 @@ public class testing {
                     + assignmentsArrayList.get(i).getName() + "', "
                     + assignmentsArrayList.get(i).getId() + ", "
                     + assignmentsArrayList.get(i).getClassid() + ", "
-                    + assignmentsArrayList.get(i).getTypeid() + ");");*/
+                    + assignmentsArrayList.get(i).getTypeid() + ");"); */
         }
         return assignmentsArrayList;
     }
 
     public static ArrayList<Schedule> generateSchedules() throws IOException{
         ArrayList<Schedule> scheduleArrayList = new ArrayList<Schedule>();
-        /*private int scheduleID;
-        private int studentID;
-        private int classID;*/
         int scheduleID = 0;
         for(int s = 0; s < Students.size(); s ++) {
             ArrayList<Classes> studentClasses = new ArrayList<>();
@@ -465,38 +431,18 @@ public class testing {
 
     public static ArrayList<Grades> generateGrades() throws IOException{
         ArrayList<Grades> gradesArrayList = new ArrayList<>();
-        for(int i = 0; i < Students.size(); i ++){
+        for(int i = 0; i < Schedules.size(); i ++){
+            int classid = Schedules.get(i).getClassID() - 1;
+            int student = Schedules.get(i).getStudentID();
+            for(int k = 0; k < Assignments.size(); k ++){
+                if(Assignments.get(k).getClassid() == classid){
+                    int grade = (int) (Math.random() * 26) + 75;
+                    int assignmentid = Assignments.get(k).getId();
+                    Grades Grade = new Grades(grade, assignmentid,student);
+                    gradesArrayList.add(Grade);
+                }
+            }
         }
-        int grade = (int) (Math.random() * 100 - 75) + 75;
-
-
         return gradesArrayList;
     }
 }
-
-//classes is basically course offerings
-    /*public static ArrayList<Classes> generateClasses() throws IOException {
-        /*private int classID;
-        private int period;
-        private int teacherID;
-        private int courseID;
-        private int roomID;
-        ArrayList<Classes> classesArrayList = new ArrayList<>();
-        for (int i = 0; i < generateCourses().size(); i++) {
-            int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1;
-            int courseID = generateCourses().get(i).getCourseid();
-            int roommax = generateRooms().size();
-            int whichroom = (int) (Math.random() * roommax) +1;
-            System.out.println(whichroom);
-            for (int k = 0; k < offerings; k++) {
-                for(int g = 0; g < classesArrayList.size(); g ++){
-                    if(classesArrayList.get(g).getRoomID() == 2 && classesArrayList.get(i).getPeriod() == 4)
-                }
-            }
-            //list of classes, adding as we go on instead of adding to list being the final action.
-            // Add one class to list, with random room chosen and random period chosen, and add that class to the list.
-            // while loop will have something like if the arraylist.get(i).period and . name is equal to the random values currently,
-            // then loop again until the random values don't match any values in the table. this will make sure no classes will share same period AND room at the same time
-        }
-        return classesArrayList;
-    } */
