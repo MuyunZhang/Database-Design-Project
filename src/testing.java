@@ -158,7 +158,6 @@ public class testing {
             String teacher_name = list[0];
             teacher.add(teacher_name);
         }
-        System.out.println(teacher.size());
         for (int i = 0; i < fileData.size(); i++) {
             int len = fileData.size();
             String[] list = fileData.get(i).split("\\|");
@@ -229,15 +228,15 @@ public class testing {
     }
 
     public static ArrayList<CourseType> generateCourseTypes() throws IOException {
-        ArrayList<CourseType> courseArrayList = new ArrayList<>();
+        ArrayList<CourseType> courseTypeArrayList = new ArrayList<>();
         String[] types = {"AP", "Regents", "Elective"};
         for (int i = 1; i <= types.length; i++) {
             String name = types[i - 1];
             CourseType courseType = new CourseType(i, name);
-            courseArrayList.add(courseType);
-            System.out.println("INSERT INTO Course_Type ( Course_TypeID, Course_Type ) VALUES ( " + i + ", ' " + types[i - 1] + "' );");
+            courseTypeArrayList.add(courseType);
+            System.out.println("INSERT INTO Course_Type ( Course_TypeID, Course_Type ) VALUES ( " + i + ", '" + types[i - 1] + "' );");
         }
-        return courseArrayList;
+        return courseTypeArrayList;
     }
 
     public static ArrayList<Rooms> generateRooms() throws IOException {
@@ -274,11 +273,7 @@ public class testing {
 
     public static ArrayList<Courses> generateCourses() throws IOException {
         ArrayList<Courses> coursesArrayList = new ArrayList<>();
-        ArrayList<String> all_courses = new ArrayList<>();
-        ArrayList<String> data = getFileData("src/courses");
-
         ArrayList<String> fileData = getFileData("src/courses");
-        ArrayList<String> course = new ArrayList<>();
         for (int i = 1; i <= fileData.size(); i++) {
             String name = fileData.get(i - 1);
             int typeid = 0;
@@ -305,8 +300,6 @@ public class testing {
        private int roomID; */
         ArrayList<Classes> classesArrayList = new ArrayList<>();
         int classIDCounter = 1;
-
-        ArrayList<Courses> courseArrayList = generateCourses();
         ArrayList<String> fileData = getFileData("src/teachers");
         ArrayList<String> teacher = new ArrayList<>();
         for (int i = 0; i < fileData.size(); i++) {
@@ -316,7 +309,7 @@ public class testing {
             teacher.add(teacher_name);
         }
 
-        for (int i = 0; i < courseArrayList.size(); i++) {
+        for (int i = 0; i < Courses.size(); i++) {
             int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1; // 1 to 5 offerings
             int courseID = Courses.get(i).getCourseid();
             int roommax = Rooms.size();
