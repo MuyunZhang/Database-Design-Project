@@ -58,6 +58,16 @@ public class testing {
             throw new RuntimeException(e);
         }
     }
+
+    static ArrayList<Teachers> Teachers;
+    static {
+        try {
+            Teachers = generateTeachers();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     static ArrayList<Classes> Classes;
 
     static {
@@ -73,14 +83,6 @@ public class testing {
     static {
         try {
             Assignments = generateAssignments();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    static ArrayList<Teachers> Teachers;
-    static {
-        try {
-            Teachers = generateTeachers();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -143,7 +145,7 @@ public class testing {
             String newName = "Student" + i;
             Students student = new Students(newName, i, i);
             studentArrayList.add(student);
-            System.out.println("INSERT INTO Students ( Student_ID, Student_name ) VALUES ( " + i + ", 'Student" + i + "' );");
+            System.out.println("INSERT INTO Students ( Student_ID, Student_Name ) VALUES ( " + i + ", 'Student" + i + "' );");
         }
         return studentArrayList;
     }
@@ -244,7 +246,6 @@ public class testing {
         String[] floors = {"B", "1", "2", "3", "4", "5", "6", "7", "8"};
         String[] wing = {"N", "S", "E", "W"};
         int count = 1;
-        //rooms
         for (int k = 0; k < 9; k++) {
             for (int w = 0; w < 4; w++) {
                 for (int i = 1; i <= 20; i++) {
@@ -293,11 +294,6 @@ public class testing {
         return coursesArrayList;
     }
     public static ArrayList<Classes> generateClasses() throws IOException {
-    /* private int classID;
-       private int period;
-       private int teacherID;
-       private int courseID;
-       private int roomID; */
         ArrayList<Classes> classesArrayList = new ArrayList<>();
         int classIDCounter = 1;
         ArrayList<String> fileData = getFileData("src/teachers");
@@ -310,7 +306,7 @@ public class testing {
         }
 
         for (int i = 0; i < Courses.size(); i++) {
-            int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1; // 1 to 5 offerings
+            int offerings = (int) (Math.random() * (5 - 1 + 1)) + 1;
             int courseID = Courses.get(i).getCourseid();
             int roommax = Rooms.size();
 
@@ -320,8 +316,8 @@ public class testing {
                 int whichroom = 0;
 
                 while (!unique) {
-                    randomPeriod = (int) (Math.random() * 10) + 1; // Period 1 to 10
-                    whichroom = (int) (Math.random() * roommax) + 1; // Room 1 to roommax
+                    randomPeriod = (int) (Math.random() * 10) + 1;
+                    whichroom = (int) (Math.random() * roommax) + 1;
 
                     unique = true;
                     for (int g = 0; g < classesArrayList.size(); g++) {
@@ -352,11 +348,6 @@ public class testing {
     }
 
     public static ArrayList<Assignments> generateAssignments() throws IOException {
-    /* private String name;
-       private int id;
-       private int typeid;
-       private int classid; */
-
         ArrayList<Assignments> assignmentsArrayList = new ArrayList<>();
         int assignmentIDCounter = 1;
 
@@ -366,7 +357,6 @@ public class testing {
         for (int i = 0; i < Classes.size(); i++) {
             int classID = Classes.get(i).getClassID();
 
-            // Create 12 minor assignments
             for (int j = 0; j < 12; j++) {
                 String assignmentName = "Minor Assignment " + (j + 1) + " Class " + classID;
                 Assignments minorAssignment = new Assignments(assignmentName, assignmentIDCounter, minorTypeID, classID);
@@ -374,7 +364,6 @@ public class testing {
                 assignmentIDCounter++;
             }
 
-            // Create 3 major assignments
             for (int j = 0; j < 3; j++) {
                 String assignmentName = "Major Assignment " + (j + 1) + " Class " + classID;
                 Assignments majorAssignment = new Assignments(assignmentName, assignmentIDCounter, majorTypeID, classID);
