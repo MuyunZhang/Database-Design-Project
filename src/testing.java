@@ -278,7 +278,7 @@ public class testing {
         for (int i = 1; i <= fileData.size(); i++) {
             String name = fileData.get(i - 1);
             int typeid = 0;
-            if (name.contains("AP") && !name.contains("Pre-AP")) {
+            if (name.contains("AP") && !name.contains("Pre-AP") && !name.contains("-AP")) {
                 typeid = 1;
                 System.out.println("INSERT INTO Courses ( Course_ID, Name, Course_TypeID ) VALUES ( " + i + ", \"" + name + "\", " + 1 + ");");
             } else if (name.contains("Regents")) {
